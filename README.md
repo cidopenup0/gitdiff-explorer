@@ -1,34 +1,47 @@
-# GitDiff Explorer
+# Git Snapshot Explorer
 
-A Next.js (App Router) web app that looks and feels like GitHub to browse any local Git repository. It shows commit history, diffs, trees, and full file snapshots at any commit. Everything is plain JavaScript (no TypeScript).
+A clean, fast web app to explore local Git repositories. Browse commits, view diffs, and inspect files at any commit with a GitHub-like interface.
 
 ## Features
-- Validate any local Git repo path
-- Paginated commit history with metadata
-- Commit detail view with changed files and full unified diff
-- Browse repository tree at any commit
-- View file snapshots with syntax highlighting and copy-to-clipboard
-- Graceful handling for binary or large files with a copyable Git download command
-- Light/dark theme toggle, GitHub-inspired UI, Tailwind + shadcn-style components
 
-## Stack
-- Next.js App Router (JavaScript only)
-- React, TailwindCSS, shadcn-style UI primitives
-- highlight.js for code highlighting
-- Git access via `child_process.spawn` (no shell exec)
+- Browse commit history with full metadata
+- View unified diffs for any commit
+- Explore repository structure at any point in time
+- View file snapshots with syntax highlighting
+- Light/dark theme toggle
+- Clean, minimal UI
 
-## Getting Started
+## Tech Stack
+
+- Next.js App Router
+- React + TailwindCSS
+- highlight.js for code syntax highlighting
+- Git operations via Node.js child_process
+
+## Quick Start
+
 1. Install dependencies:
    ```bash
    npm install
    ```
-2. Run the dev server:
+
+2. Run the development server:
    ```bash
    npm run dev
    ```
-3. Open http://localhost:3000 and enter a local repo path (e.g., `C:\projects\myrepo`).
 
-## Notes
-- Backend validates repo path, commit hash, and tree paths, and enforces diff (2MB) and blob (1MB preview) limits.
-- Uses caching for repeated Git queries.
-- Works entirely with local repositories; no network Git operations.
+3. Open http://localhost:3000 and enter a local Git repository path (e.g., `C:\projects\myrepo` or `/home/user/projects/myrepo`)
+
+## How It Works
+
+- Enter a valid local Git repository path
+- Browse the commit history with pagination and search
+- Click any commit to view its changes
+- Use the diff/old/new viewers to inspect file changes
+- Navigate the repository tree at any point in history
+
+## Limits
+
+- Diff preview: 2MB max
+- File preview: 1MB max
+- Binary files: Git download command provided
