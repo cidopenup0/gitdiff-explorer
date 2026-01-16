@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-muted text-slate-900 dark:bg-mutedDark dark:text-slate-100 min-h-screen;
+}
+
+a {
+  @apply text-accent hover:underline;
+}
+
+.code-block {
+  @apply font-mono text-sm whitespace-pre overflow-auto rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 p-4;
+}
+
+.diff-add {
+  background-color: rgba(46, 160, 67, 0.12);
+}
+
+.diff-del {
+  background-color: rgba(248, 81, 73, 0.12);
+}
+
+.diff-context {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+:root.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+:root.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+* {
+  scrollbar-width: none;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+:root.dark * {
+  scrollbar-color: #475569 transparent;
+}
