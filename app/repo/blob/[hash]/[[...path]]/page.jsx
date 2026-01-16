@@ -53,7 +53,7 @@ export default function BlobPage() {
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <h1 className="font-mono text-sm text-slate-800 dark:text-slate-100">{fullPath}</h1>
-          <p className="text-xs text-slate-500">Commit {hash?.slice(0, 7)}</p>
+          <p className="text-xs text-slate-500">{blob?.content?.split('\n').length || 0} lines - <strong>Commit: {hash?.slice(0, 7)}</strong> </p>
         </div>
         <div className="flex items-center gap-2">
           <CopyButton value={blob?.content || ''} />

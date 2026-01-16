@@ -3,16 +3,16 @@ import { cn } from '@/lib/utils';
 
 export function Card({ className, children }) {
   return (
-    <div className={cn('rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm', className)}>
+    <div className={cn('rounded-xl border-2 border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark transition-all duration-200', className)}>
       {children}
     </div>
   );
 }
 
 export function CardHeader({ className, children }) {
-  return <div className={cn('border-b border-slate-200 dark:border-slate-800 px-4 py-3', className)}>{children}</div>;
+  return <div className={cn('border-b-2 border-border-light dark:border-border-dark px-6 py-5', className)}>{children}</div>;
 }
 
 export function CardContent({ className, children }) {
-  return <div className={cn('px-4 py-3', className)}>{children}</div>;
+  return <div className={cn('px-6 py-5', className)}>{children}</div>;
 }

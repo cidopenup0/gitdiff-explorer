@@ -1,25 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   color-scheme: light;
+  --font-geist-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-geist-mono: 'JetBrains Mono', monospace;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
 }
 
 :root.dark {
   color-scheme: dark;
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --border-color: #30363d;
 }
 
 body {
-  @apply bg-muted text-slate-900 dark:bg-mutedDark dark:text-slate-100 min-h-screen;
+  @apply bg-[var(--bg-primary)] text-[var(--text-primary)] min-h-screen;
+  font-family: var(--font-geist-sans);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a {
-  @apply text-accent hover:underline;
+  @apply text-primary hover:text-primary-hover transition-colors;
 }
 
 .code-block {
-  @apply font-mono text-sm whitespace-pre overflow-auto rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 p-4;
+  @apply font-mono text-sm whitespace-pre overflow-auto rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4;
 }
 
 .diff-add {
@@ -40,20 +56,20 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #d1d5db;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #9ca3af;
 }
 
 :root.dark ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #30363d;
 }
 
 :root.dark ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #484f58;
 }
 
 ::-webkit-scrollbar-track {
@@ -61,10 +77,10 @@ a {
 }
 
 * {
-  scrollbar-width: none;
-  scrollbar-color: #cbd5e1 transparent;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
 }
 
 :root.dark * {
-  scrollbar-color: #475569 transparent;
+  scrollbar-color: #30363d transparent;
 }

@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Check, AlertTriangle, Loader2 } from 'lucide-react';
+import { ArrowRight, Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function RepoInput() {
@@ -38,37 +37,45 @@ export default function RepoInput() {
   };
 
   return (
-    <Card className="max-w-2xl">
-      <CardHeader>
-        <div className="space-y-1">
-          <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-50">Select a Git repository</h1>
-          <p className="text-sm text-slate-600 dark:text-slate-400">Enter a local path to a Git worktree (example: C:\\projects\\myrepo).</p>
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
+    <div className="w-full">
+      <div className="flex gap-3 mb-4">
         <Input
           value={repoPath}
           onChange={(e) => setRepoPath(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="C:/projects/myrepo"
+          placeholder="C:/projects/my-repo"
           autoComplete="off"
+          className="flex-1 h-14 px-5 text-base bg-background-light dark:bg-background-dark-secondary border-2 border-border-light dark:border-border-dark rounded-xl focus:border-primary dark:focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-text-light dark:text-text-dark placeholder:text-text-light-secondary dark:placeholder:text-text-dark-secondary"
         />
-        <div className="flex items-center gap-2">
-          <Button onClick={validateRepo} disabled={!repoPath || loading} type="button">
-            {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Validate Repo'}
-          </Button>
-          {status?.type === 'success' && (
-            <div className="inline-flex items-center gap-1 text-sm text-green-600 dark:text-green-400">
-              <Check className="h-4 w-4" /> {status.message}
-            </div>
+        <Button 
+          onClick={validateRepo} 
+          disabled={!repoPath || loading} 
+          type="button" 
+          className="h-14 px-10 bg-primary hover:bg-primary-hover disabled:bg-text-light-secondary dark:disabled:bg-text-dark-secondary disabled:cursor-not-allowed disabled:opacity-60 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 flex items-center gap-2"
+        >
+          {loading ? (
+            <>
+              <Loader2 className="h-5 w-5 animate-spin" />
+            </>
+          ) : (
+            <>
+              Browse
+              <ArrowRight className="h-5 w-5" />
+            </>
           )}
-          {status?.type === 'error' && (
-            <div className="inline-flex items-center gap-1 text-sm text-red-600 dark:text-red-400">
-              <AlertTriangle className="h-4 w-4" /> {status.message}
-            </div>
-          )}
+        </Button>
+      </div>
+      
+      {status?.type === 'success' && (
+        <div className="flex items-center gap-2 text-sm font-medium text-success px-4 py-2 rounded-lg bg-success/10">
+          <Check className="h-4 w-4" /> {status.message}
         </div>
-      </CardContent>
-    </Card>
+      )}
+      {status?.type === 'error' && (
+        <div className="flex items-center gap-2 text-sm font-medium text-danger px-4 py-2 rounded-lg bg-danger/10">
+          <AlertTriangle className="h-4 w-4" /> {status.message}
+        </div>
+      )}
+    </div>
   );
 }

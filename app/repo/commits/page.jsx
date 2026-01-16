@@ -122,36 +122,36 @@ export default function CommitsPage() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={handleBack} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
           </Button>
-          <h1 className="text-xl font-semibold">Commits</h1>
+          <h1 className="text-2xl font-bold text-text-light dark:text-text-dark">Commits</h1>
           {totalCommits !== null && (
-            <span className="pt-1 text-xs font-medium text-slate-700 dark:text-slate-300">
+            <span className="px-3 py-1 text-xs font-semibold text-text-light-secondary dark:text-text-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary rounded-lg border border-border-light dark:border-border-dark">
               {totalCommits} total
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-light-secondary dark:text-text-dark-secondary" />
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search commits..."
-              className="w-64 pl-9"
+              className="w-64 pl-9 h-10"
             />
           </div>
           {searchQuery.trim() ? (
-            <div className="text-sm text-slate-600 dark:text-slate-400">
+            <div className="text-sm text-text-light-secondary dark:text-text-dark-secondary font-medium">
               {filteredCommits.length} result{filteredCommits.length !== 1 ? 's' : ''} 
               {totalPages > 1 && ` - Page ${page + 1} of ${totalPages}`}
             </div>
           ) : (
-            <div className="text-sm text-slate-600 dark:text-slate-400">
+            <div className="text-sm text-text-light-secondary dark:text-text-dark-secondary font-medium">
               {totalPages !== null ? `Page ${page + 1} of ${totalPages}` : `Page ${page + 1}`}
             </div>
           )}
@@ -170,20 +170,20 @@ export default function CommitsPage() {
         </div>
       </div>
       {loading && <CommitListSkeleton />}
-      {error && <div className="text-sm text-red-600 dark:text-red-400">{error}</div>}
+      {error && <div className="text-sm text-danger font-medium px-4 py-3 rounded-lg bg-danger/10">{error}</div>}
       {!loading && !error && (
         <div className="space-y-3">
           {commits.map((c) => (
             <CommitCard key={c.hash} commit={c} repoPath={repoPath} />
           ))}
           {commits.length === 0 && searchQuery.trim() && (
-            <div className="text-center py-8 text-slate-500 dark:text-slate-400">
-              <p className="text-sm">No results found for "{searchQuery}"</p>
-              <p className="text-xs mt-1">Try a different search term</p>
+            <div className="text-center py-12 text-text-light-secondary dark:text-text-dark-secondary">
+              <p className="text-base font-medium">No results found for "{searchQuery}"</p>
+              <p className="text-sm mt-2">Try a different search term</p>
             </div>
           )}
           {commits.length === 0 && !searchQuery.trim() && (
-            <div className="text-sm text-slate-500">No commits found.</div>
+            <div className="text-sm text-text-light-secondary dark:text-text-dark-secondary">No commits found.</div>
           )}
         </div>
       )}

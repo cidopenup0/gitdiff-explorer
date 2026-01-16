@@ -3,9 +3,9 @@ import { cn } from '@/lib/utils';
 
 const variants = {
   default:
-    'bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer',
-  ghost: 'bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent cursor-pointer',
-  outline: 'border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer'
+    'bg-primary text-white hover:bg-primary-hover shadow-md hover:shadow-lg border-0 cursor-pointer transition-all duration-200',
+  ghost: 'bg-transparent hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary border border-transparent cursor-pointer transition-all duration-200 text-text-light dark:text-text-dark',
+  outline: 'border-2 border-border-light dark:border-border-dark hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary cursor-pointer transition-all duration-200 text-text-light dark:text-text-dark'
 };
 
 const sizes = {

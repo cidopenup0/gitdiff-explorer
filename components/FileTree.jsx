@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Folder, File } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function FileTree({ items, hash, pathSegments = [], repoPath }) {
@@ -14,10 +13,10 @@ export default function FileTree({ items, hash, pathSegments = [], repoPath }) {
   });
 
   return (
-    <Card>
-      <CardContent className="space-y-3 py-4">
+    <div className="rounded-xl bg-card-light dark:bg-card-dark border-2 border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+      <div className="p-6 space-y-4">
         <Breadcrumbs hash={hash} segments={pathSegments} repoPath={repoPath} />
-        <div className="divide-y divide-slate-200 rounded-md border border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+        <div className="space-y-1">
           {sorted.map((entry) => {
             const fullPath = basePath ? `${basePath}/${entry.name}` : entry.name;
             if (entry.type === 'tree') {
@@ -25,10 +24,10 @@ export default function FileTree({ items, hash, pathSegments = [], repoPath }) {
                 <Link
                   key={entry.path}
                   href={`/repo/tree/${hash}/${fullPath}?repoPath=${encodeURIComponent(repoPath)}`}
-                  className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
+                  className="flex items-center gap-3 px-4 py-3 text-base hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary rounded-lg transition-all duration-200 no-underline group"
                 >
-                  <Folder className="h-4 w-4 text-amber-500" />
-                  <span>{entry.name}</span>
+                  <Folder className="h-5 w-5 text-warning" />
+                  <span className="text-text-light dark:text-text-dark font-medium group-hover:text-primary transition-colors">{entry.name}</span>
                 </Link>
               );
             }
@@ -36,16 +35,16 @@ export default function FileTree({ items, hash, pathSegments = [], repoPath }) {
               <Link
                 key={entry.path}
                 href={`/repo/blob/${hash}/${fullPath}?repoPath=${encodeURIComponent(repoPath)}`}
-                className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
+                className="flex items-center gap-3 px-4 py-3 text-base hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary rounded-lg transition-all duration-200 no-underline group"
               >
-                <File className="h-4 w-4 text-slate-500" />
-                <span>{entry.name}</span>
+                <File className="h-5 w-5 text-text-light-secondary dark:text-text-dark-secondary" />
+                <span className="text-text-light dark:text-text-dark font-medium group-hover:text-primary transition-colors">{entry.name}</span>
               </Link>
             );
           })}
-          {sorted.length === 0 && <div className="px-3 py-2 text-sm text-slate-500">Empty folder</div>}
+          {sorted.length === 0 && <div className="px-4 py-3 text-base text-text-light-secondary dark:text-text-dark-secondary">Empty folder</div>}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
